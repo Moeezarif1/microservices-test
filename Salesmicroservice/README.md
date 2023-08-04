@@ -20,6 +20,19 @@ This microservice includes the following models:
 ## API Client <a name="api-client"/>
 - **WarehouseAPI**: This class is a client for the Warehouse Microservice API. It communicates with the Warehouse Microservice to get product details (`get_product_details` method) and to update the product quantity (`update_product_quantity` method).
 
+
+## Credentials <a name="credentials"/>
+
+Superuser for Django:
+- Username: django
+- Password: django
+
+User for the local postgres db:
+```shell
+CREATE USER neednect_user WITH PASSWORD 'password';
+```
+
+
 ## Environment Variables <a name="environment-variables"/>
 This microservice uses the following environment variables:
 - `POSTGRES_USER`
