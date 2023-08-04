@@ -1,0 +1,55 @@
+version: '3'
+services:
+  warehouse:
+    build:
+      context: ./Warehousemicroservice
+    ports:
+      - "8001:8000"
+    environment:
+      - POSTGRES_USER=neednect_user
+      - POSTGRES_NAME=neednect
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_HOST=db
+    depends_on:
+      - db
+
+  sales:
+    build:
+      context: ./Salesmicroservice
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_USER=neednect_user
+      - POSTGRES_NAME=neednect
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_HOST=db
+    depends_on:
+      - db
+
+  accounting:
+    build:
+      context: ./Accountingmicroservice
+    ports:
+      - "8002:8000"
+    environment:
+      - POSTGRES_USER=neednect_user
+      - POSTGRES_NAME=neednect
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_HOST=db
+    depends_on:
+      - db
+
+  db:
+    build:
+      context: ./db
+    environment:
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data
+    ports:
+      - "9020:5432"
+
+
+
+volumes:
+  dev-db-data:
